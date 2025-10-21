@@ -1,40 +1,55 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, createHashRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import AuthLayout from '@/layouts/AuthLayout';
 import DashboardLayout from '@/layouts/DashboardLayout';
-import Home from '@/features/home/Home';
+import { publicRoutes, protectedRoutes, errorRoutes } from '@/config/routes';
+import Loading from '@/components/shared/Loading';
+import ErrorBoundary from '@/components/shared/common/ErrorBoundary';
 
-// Lazy loading para módulos
-const Login = lazy(() => import('@/features/auth/Login'));
-// const Register = lazy(() => import('../features/auth/Register'));
-// const ForgotPassword = lazy(() => import('../features/auth/ForgotPassword'));
-// const ChangePassword = lazy(() => import('../features/auth/ChangePassword'));
-// const Home = lazy(() => import('../features/auth/Home'));
+// Función para crear elementos con Suspense
+const createSuspenseElement = (Component: React.ComponentType) => (
+  <Suspense fallback={<Loading />}>
+    <ErrorBoundary>
+      <Component />
+    </ErrorBoundary>
+  </Suspense>
+);
+
+// Configuración de rutas públicas
+const publicRoutesConfig = publicRoutes.map(route => ({
+  path: route.path,
+  element: createSuspenseElement(route.element)
+}));
+
+// Configuración de rutas protegidas
+const protectedRoutesConfig = protectedRoutes.map(route => ({
+  path: route.path,
+  element: createSuspenseElement(route.element)
+}));
+
+// Configuración de rutas de error
+const errorRoutesConfig = errorRoutes.map(route => ({
+  path: route.path,
+  element: createSuspenseElement(route.element)
+}));
 
 // Definición de rutas
 const router = createBrowserRouter([
   {
     element: <AuthLayout />,
-    children: [
-      { path: '/login', element: <Suspense fallback={<div>Loading...</div>}><Login /></Suspense> },
-    //   { path: '/register', element: <Suspense fallback={<div>Loading...</div>}><Register /></Suspense> },
-    //   { path: '/forgot-password', element: <Suspense fallback={<div>Loading...</div>}><ForgotPassword /></Suspense> },
-    //   { path: '/change-password', element: <Suspense fallback={<div>Loading...</div>}><ChangePassword /></Suspense> },
-    ],
+    children: publicRoutesConfig,
   },
   {
     element: <ProtectedRoute />,
     children: [
       {
         element: <DashboardLayout />,
-        children: [
-          { path: '/', element: <Suspense fallback={<div>Loading...</div>}><Home /></Suspense> },
-        ],
+        children: protectedRoutesConfig,
       },
     ],
   },
-  { path: '*', element: <Suspense fallback={<div>Loading...</div>}><Login /></Suspense> },
+  ...errorRoutesConfig,
 ]);
 
 export default router;

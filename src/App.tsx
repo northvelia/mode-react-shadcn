@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
+import { store } from './store';
+import router from './routes';
+import Loading from './components/shared/Loading';
 
 
 function App() {
-
-
   return (
-    <>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <Loading />
+    </Provider>
   )
 }
 

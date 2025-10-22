@@ -8,7 +8,7 @@ export const loginUser = async (email: string, password: string) => {
     await axiosInstance.get('/sanctum/csrf-cookie');
     const response = await axiosInstance.post('/api/login', { email, password });
     toast.success('Login exitoso');
-    return response.data as { user: User; token: string };
+    return response.data as { user: User };
   } catch (error) {
     toast.error('Error en el login');
     throw error;
@@ -50,7 +50,7 @@ export const changePassword = async (token: string, newPassword: string) => {
 
 export const logoutUser = async () => {
   try {
-    await axiosInstance.post('/auth/logout');
+    await axiosInstance.post('/api/logout');
     toast.success('Sesión cerrada');
     return true;
   } catch (error) {

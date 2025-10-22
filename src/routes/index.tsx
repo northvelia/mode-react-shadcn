@@ -6,6 +6,7 @@ import DashboardLayout from '@/layouts/DashboardLayout';
 import { publicRoutes, protectedRoutes, errorRoutes } from '@/config/routes';
 import Loading from '@/components/shared/Loading';
 import ErrorBoundary from '@/components/shared/common/ErrorBoundary';
+import { PublicRoute } from './PublicRoute';
 
 // Función para crear elementos con Suspense
 const createSuspenseElement = (Component: React.ComponentType) => (
@@ -37,8 +38,13 @@ const errorRoutesConfig = errorRoutes.map(route => ({
 // Definición de rutas
 const router = createBrowserRouter([
   {
-    element: <AuthLayout />,
-    children: publicRoutesConfig,
+    element: <PublicRoute />,
+    children: [
+      {
+        element: <AuthLayout />,
+        children: publicRoutesConfig,
+      },
+    ],
   },
   {
     element: <ProtectedRoute />,

@@ -7,6 +7,7 @@ export interface User {
 
 export interface AuthState {
     isAuthenticated: boolean;
+    initialized: boolean,
     user: User | null;
     token: string | null;
 }

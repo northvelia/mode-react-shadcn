@@ -5,6 +5,8 @@ import DashboardHeader from '@/components/shared/headers/DashboardHeader';
 
 // Layout para páginas autenticadas
 function DashboardLayout() {
+
+  
   return (
     <SidebarProvider>
       <div className="flex w-full">

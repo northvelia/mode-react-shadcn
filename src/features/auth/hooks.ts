@@ -32,7 +32,7 @@ export const useLogout = () => {
       const success = await logoutUser();
       if (success) {
         dispatch(logout());
-        navigate('#/login');
+        navigate('/login');
       }
       return { success };
     } catch (error) {

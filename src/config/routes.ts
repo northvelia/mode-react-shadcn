@@ -1,3 +1,4 @@
+import Home from '@/features/public/pages/Home';
 import { lazy } from 'react';
 
 // Lazy loading para módulos de autenticación
@@ -7,7 +8,7 @@ const ForgotPasswordPage = lazy(() => import('@/features/auth/pages/ForgotPasswo
 const ChangePasswordPage = lazy(() => import('@/features/auth/pages/ChangePasswordPage'));
 
 // Lazy loading para páginas del dashboard
-const HomePage = lazy(() => import('@/features/home/Home'));
+const HomePage = lazy(() => import('@/features/home/pages/HomePage'));
 const UsersPage = lazy(() => import('@/features/users/pages/UsersPage'));
 // const InventoryPage = lazy(() => import('@/features/inventory/pages/InventoryPage'));
 // const ReportsPage = lazy(() => import('@/features/reports/pages/ReportsPage'));
@@ -15,6 +16,12 @@ const UsersPage = lazy(() => import('@/features/users/pages/UsersPage'));
 
 // Configuración de rutas públicas (sin autenticación)
 export const publicRoutes = [
+  {
+    path: '/',
+    element: Home,
+    title: 'Vista inicial',
+    description: 'Vista publica'
+  },
   {
     path: '/login',
     element: LoginPage,
@@ -73,14 +80,14 @@ export const errorRoutes = [
 
 // Función para obtener rutas por rol
 export const getRoutesByRole = (userRole: string = 'user') => {
-  return protectedRoutes.filter(route => 
+  return protectedRoutes.filter(route =>
     !route.roles || route.roles.includes(userRole)
   );
 };
 
 // Función para obtener rutas del sidebar
 export const getSidebarRoutes = (userRole: string = 'user') => {
-  return protectedRoutes.filter(route => 
+  return protectedRoutes.filter(route =>
     route.showInSidebar && (!route.roles || route.roles.includes(userRole))
   );
 };

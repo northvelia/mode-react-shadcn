@@ -44,7 +44,7 @@ export const publicRoutes = [
 // Configuración de rutas protegidas (requieren autenticación)
 export const protectedRoutes = [
   {
-    path: '/',
+    path: '/c',
     element: HomePage,
     title: 'Dashboard',
     description: 'Panel principal',
@@ -59,31 +59,7 @@ export const protectedRoutes = [
     icon: 'Users',
     showInSidebar: true,
     roles: ['admin', 'manager']
-  },
-  // {
-  //   path: '/inventory',
-  //   element: InventoryPage,
-  //   title: 'Inventario',
-  //   description: 'Gestión de inventario',
-  //   icon: 'Inbox',
-  //   showInSidebar: true
-  // },
-  // {
-  //   path: '/reports',
-  //   element: ReportsPage,
-  //   title: 'Reportes',
-  //   description: 'Reportes y estadísticas',
-  //   icon: 'BarChart3',
-  //   showInSidebar: true
-  // },
-  // {
-  //   path: '/settings',
-  //   element: SettingsPage,
-  //   title: 'Configuración',
-  //   description: 'Configuración del sistema',
-  //   icon: 'Settings',
-  //   showInSidebar: true
-  // }
+  }
 ];
 
 // Configuración de rutas de error

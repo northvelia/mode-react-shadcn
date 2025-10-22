@@ -5,7 +5,8 @@ import { toast } from 'sonner';
 // Servicios de autenticación
 export const loginUser = async (email: string, password: string) => {
   try {
-    const response = await axiosInstance.post('/auth/login', { email, password });
+    await axiosInstance.get('/sanctum/csrf-cookie');
+    const response = await axiosInstance.post('/api/login', { email, password });
     toast.success('Login exitoso');
     return response.data as { user: User; token: string };
   } catch (error) {

@@ -34,9 +34,9 @@ function LoginForm() {
     
     try {
       const result = await handleLogin(data.email, data.password);
-      if (!result.success) {
-        setError(result.error?.message || 'Error al iniciar sesión');
-      }
+      // if (!result.success) {
+      //   setError(result.error?.message || 'Error al iniciar sesión');
+      // }
     } catch (err) {
       setError('Error inesperado. Intenta de nuevo.');
     } finally {

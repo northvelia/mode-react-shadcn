@@ -12,7 +12,7 @@ export const useLogin = () => {
     try {
       const data = await loginUser(email, password);
       dispatch(login(data));
-      navigate('/');
+      navigate('/c');
       return { success: true };
     } catch (error) {
       return { success: false, error };

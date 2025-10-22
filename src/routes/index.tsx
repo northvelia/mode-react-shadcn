@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-import AuthLayout from '@/layouts/AuthLayout';
+// import AuthLayout from '@/layouts/AuthLayout';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import { publicRoutes, protectedRoutes, errorRoutes } from '@/config/routes';
 import Loading from '@/components/shared/Loading';
 import ErrorBoundary from '@/components/shared/common/ErrorBoundary';
 import { PublicRoute } from './PublicRoute';
+import PublicLayout from '@/layouts/PublicLayout';
 
 // Función para crear elementos con Suspense
 const createSuspenseElement = (Component: React.ComponentType) => (
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
     element: <PublicRoute />,
     children: [
       {
-        element: <AuthLayout />,
+        element: <PublicLayout />,
         children: publicRoutesConfig,
       },
     ],

@@ -38,7 +38,7 @@ function Loading({
       <div className="flex flex-col items-center gap-3">
         <Loader2 className={cn(sizeClasses[size], 'animate-spin text-primary')} />
         {text && (
-          <p className="text-sm text-muted-foreground animate-pulse">
+          <p className="text-sm text-gray-50 text-muted-foreground animate-pulse">
             {text}
           </p>
         )}

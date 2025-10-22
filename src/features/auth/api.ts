@@ -8,7 +8,7 @@ export const loginUser = async (email: string, password: string) => {
     await axiosInstance.get('/sanctum/csrf-cookie');
     const response = await axiosInstance.post('/api/login', { email, password });
     toast.success('Login exitoso');
-    return response.data as { user: User };
+    return response.data;
   } catch (error) {
     toast.error('Error en el login');
     throw error;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
     Sheet,
@@ -9,17 +9,9 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
 
 function PublicHeader() {
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
-
-    const navLinks = [
-        { name: 'Inicio', path: '/' },
-        { name: 'Nosotros', path: '/about' },
-        { name: 'Contacto', path: '/contact' },
-    ];
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

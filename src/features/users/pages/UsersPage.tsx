@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
 import { Plus, Search, Users } from 'lucide-react';
-import { cn } from '@/lib/utils';
+
 
 // Página de gestión de usuarios
 function UsersPage() {

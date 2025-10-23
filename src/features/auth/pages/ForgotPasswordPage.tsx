@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
+import { Card, CardContent, CardHeader } from '../../../components/ui/card';
 import ForgotPasswordForm from '../components/ForgotPasswordForm';
 
 // Página para recuperar contraseña

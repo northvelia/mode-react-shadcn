@@ -5,12 +5,12 @@ import ForgotPasswordForm from '../components/ForgotPasswordForm';
 function ForgotPasswordPage() {
   return (
     <div className="w-full max-w-md mx-auto">
-      <Card>
+      <Card className='my-23'>
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Recuperar Contraseña</CardTitle>
+          {/* <CardTitle className="text-2xl">Recuperar Contraseña</CardTitle>
           <CardDescription>
             Te ayudaremos a restablecer tu contraseña
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <ForgotPasswordForm />

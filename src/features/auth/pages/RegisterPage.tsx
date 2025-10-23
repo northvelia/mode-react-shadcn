@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function RegisterPage() {
   return (
     <div className="w-full max-w-md mx-auto">
-      <Card>
+      <Card className='my-23'>
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Crear Cuenta</CardTitle>
           <CardDescription>

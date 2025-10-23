@@ -5,7 +5,7 @@ import ChangePasswordForm from '../components/ChangePasswordForm';
 function ChangePasswordPage() {
   return (
     <div className="w-full max-w-md mx-auto">
-      <Card>
+      <Card className='my-23'>
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Cambiar Contraseña</CardTitle>
           <CardDescription>

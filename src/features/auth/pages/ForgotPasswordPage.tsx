@@ -7,10 +7,6 @@ function ForgotPasswordPage() {
     <div className="w-full max-w-md mx-auto">
       <Card className='my-23'>
         <CardHeader className="text-center">
-          {/* <CardTitle className="text-2xl">Recuperar Contraseña</CardTitle>
-          <CardDescription>
-            Te ayudaremos a restablecer tu contraseña
-          </CardDescription> */}
         </CardHeader>
         <CardContent>
           <ForgotPasswordForm />

@@ -1,11 +1,10 @@
-
+import PermissionExample from '@/examples/PermissionExample';
 
 // Página de login
 function HomePage() {
   return (
     <div className="">
-      <h1 className="text-2xl font-bold mb-4">HomePage</h1>
-      Vista inicial del proyecto
+      <PermissionExample />
     </div>
   );
 }

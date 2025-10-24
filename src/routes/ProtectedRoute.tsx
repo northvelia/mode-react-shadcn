@@ -7,16 +7,17 @@ import Loading from '@/components/shared/Loading';
 
 
 function ProtectedRoute() {
-  //const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const { isAuthenticated, initialized } = useSelector((state: RootState) => state.auth);
   const location = useLocation();
   const { setGlobalLoading } = useLoading();
+
   if (!initialized) {
     setGlobalLoading(true);
     return <Loading />;
   }
+
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return <Outlet />;

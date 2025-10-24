@@ -11,7 +11,7 @@ export const useAuthCheck = () => {
         const checkAuth = async () => {
             try {
                 setGlobalLoading(true);
-                const { data } = await AxiosInstance.get('/api/user', { withCredentials: true });
+                const { data } = await AxiosInstance.get('/api/check', { withCredentials: true });
                 dispatch(login(data));
             } catch {
                 setGlobalLoading(false);

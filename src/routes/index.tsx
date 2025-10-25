@@ -8,6 +8,7 @@ import Loading from '@/components/shared/Loading';
 import ErrorBoundary from '@/components/shared/common/ErrorBoundary';
 import { PublicRoute } from './PublicRoute';
 import PublicLayout from '@/layouts/PublicLayout';
+import ProtectedRouteWrapper from '@/components/shared/common/ProtectedRouteWrapper';
 
 // Función para crear elementos con Suspense
 const createSuspenseElement = (Component: React.ComponentType) => (
@@ -16,6 +17,16 @@ const createSuspenseElement = (Component: React.ComponentType) => (
       <Component />
     </ErrorBoundary>
   </Suspense>
+);
+
+// Función para crear elementos protegidos con verificación de permisos
+const createProtectedElement = (Component: React.ComponentType, route: any) => (
+  <ProtectedRouteWrapper
+    permissions={route.permissions}
+    requireAllPermissions={route.requireAllPermissions}
+  >
+    <Component />
+  </ProtectedRouteWrapper>
 );
 
 // Configuración de rutas públicas
@@ -27,7 +38,7 @@ const publicRoutesConfig = publicRoutes.map(route => ({
 // Configuración de rutas protegidas
 const protectedRoutesConfig = protectedRoutes.map(route => ({
   path: route.path,
-  element: createSuspenseElement(route.element)
+  element: createProtectedElement(route.element, route)
 }));
 
 // Configuración de rutas de error

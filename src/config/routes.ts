@@ -10,9 +10,10 @@ const ChangePasswordPage = lazy(() => import('@/features/auth/pages/ChangePasswo
 // Lazy loading para páginas del dashboard
 const HomePage = lazy(() => import('@/features/home/pages/HomePage'));
 const UsersPage = lazy(() => import('@/features/users/pages/UsersPage'));
-// const InventoryPage = lazy(() => import('@/features/inventory/pages/InventoryPage'));
-// const ReportsPage = lazy(() => import('@/features/reports/pages/ReportsPage'));
-// const SettingsPage = lazy(() => import('@/features/settings/pages/SettingsPage'));
+const RolesPage = lazy(() => import('@/features/roles/pages/RolesPage'));
+const ReportsPage = lazy(() => import('@/features/reports/pages/ReportsPage'));
+const SettingsPage = lazy(() => import('@/features/settings/pages/SettingsPage'));
+const DocsPage = lazy(() => import('@/features/docs/pages/DocsPage'));
 
 // Configuración de rutas públicas (sin autenticación)
 export const publicRoutes = [
@@ -56,7 +57,8 @@ export const protectedRoutes = [
     title: 'Dashboard',
     description: 'Panel principal',
     icon: 'Home',
-    showInSidebar: true
+    showInSidebar: true,
+    // Sin restricciones - todos los usuarios autenticados pueden acceder
   },
   {
     path: '/users',
@@ -65,12 +67,78 @@ export const protectedRoutes = [
     description: 'Gestión de usuarios',
     icon: 'Users',
     showInSidebar: true,
-    roles: ['admin', 'manager']
+    roles: ['admin', 'manager'],
+    permissions: ['user.view'],
+    requireAllPermissions: false // Al menos uno de los permisos
+  },
+  {
+    path: '/route-protection-example',
+    element: lazy(() => import('@/examples/RouteProtectionExample')),
+    title: 'Ejemplo Protección',
+    description: 'Ejemplo de protección de rutas',
+    icon: 'Shield',
+    showInSidebar: true,
+    roles: ['admin', 'manager'],
+    permissions: ['dashboard.view']
+  },
+  {
+    path: '/sidebar-protection-example',
+    element: lazy(() => import('@/examples/SidebarProtectionExample')),
+    title: 'Ejemplo Sidebar',
+    description: 'Ejemplo de protección del sidebar',
+    icon: 'Sidebar',
+    showInSidebar: true,
+    roles: ['admin', 'manager'],
+    permissions: ['dashboard.view']
+  },
+  {
+    path: '/roles',
+    element: RolesPage,
+    title: 'Gestión de Roles',
+    description: 'Administrar roles y permisos',
+    icon: 'UserCog',
+    showInSidebar: true,
+    roles: ['admin'],
+    permissions: ['role.view']
+  },
+  {
+    path: '/reports',
+    element: ReportsPage,
+    title: 'Reportes',
+    description: 'Reportes del sistema',
+    icon: 'BarChart3',
+    showInSidebar: true,
+    roles: ['admin', 'manager'],
+    permissions: ['reports.view']
+  },
+  {
+    path: '/settings',
+    element: SettingsPage,
+    title: 'Configuración',
+    description: 'Configuración del sistema',
+    icon: 'Settings',
+    showInSidebar: true,
+    roles: ['admin']
+  },
+  {
+    path: '/docs',
+    element: DocsPage,
+    title: 'Documentación',
+    description: 'Documentación técnica',
+    icon: 'FileText',
+    showInSidebar: true,
+    roles: ['admin', 'manager'],
+    permissions: ['docs.view']
   }
 ];
 
 // Configuración de rutas de error
 export const errorRoutes = [
+  {
+    path: '/unauthorized',
+    element: lazy(() => import('@/components/shared/common/Unauthorized')),
+    title: 'No autorizado'
+  },
   {
     path: '*',
     element: lazy(() => import('@/components/shared/common/NotFound')),

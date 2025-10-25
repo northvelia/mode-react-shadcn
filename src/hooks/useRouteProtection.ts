@@ -72,6 +72,8 @@ export const useRouteProtection = (options: RouteProtectionOptions) => {
  * Hook para verificar acceso a rutas específicas del sistema
  * BASADO SOLO EN PERMISOS - Los roles son solo agrupaciones de permisos
  */
+
+
 export const useRouteAccess = () => {
   const authState = useSelector((state: RootState) => state.auth);
 

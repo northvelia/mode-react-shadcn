@@ -82,16 +82,6 @@ export const protectedRoutes = [
     permissions: ['dashboard.view']
   },
   {
-    path: '/sidebar-protection-example',
-    element: lazy(() => import('@/examples/SidebarProtectionExample')),
-    title: 'Ejemplo Sidebar',
-    description: 'Ejemplo de protección del sidebar',
-    icon: 'Sidebar',
-    showInSidebar: true,
-    roles: ['admin', 'manager'],
-    permissions: ['dashboard.view']
-  },
-  {
     path: '/roles',
     element: RolesPage,
     title: 'Gestión de Roles',

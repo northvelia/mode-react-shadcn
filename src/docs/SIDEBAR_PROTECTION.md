@@ -294,3 +294,4 @@ Este sistema proporciona:
 El sistema es completamente **mantenible** y **extensible**, permitiendo agregar nuevas rutas y funcionalidades sin afectar el código existente.
 
 
+

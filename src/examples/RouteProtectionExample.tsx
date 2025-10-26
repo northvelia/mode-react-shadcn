@@ -3,24 +3,25 @@ import { useCurrentUser } from '@/hooks/usePermissions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, Expand } from 'lucide-react';
 
 const RouteProtectionExample = () => {
   const { user, isAuthenticated } = useCurrentUser();
   const routeAccess = useRouteAccess();
-  
+
   // Ejemplos de verificación de acceso a rutas específicas
   const dashboardAccess = useRouteProtection({});
-  const usersAccess = useRouteProtection({ 
-    permissions: ['user.view'] 
+  const usersAccess = useRouteProtection({
+    permissions: ['user.view']
   });
-  const settingsAccess = useRouteProtection({ 
-    permissions: ['settings.view'] 
+  const settingsAccess = useRouteProtection({
+    permissions: ['settings.view']
   });
-  const complexAccess = useRouteProtection({ 
-    permissions: ['user.view', 'user.create'], 
-    requireAllPermissions: false 
+  const complexAccess = useRouteProtection({
+    permissions: ['user.view', 'user.create'],
+    requireAllPermissions: false
   });
+
 
   const getStatusIcon = (canAccess: boolean) => {
     return canAccess ? (
@@ -30,17 +31,25 @@ const RouteProtectionExample = () => {
     );
   };
 
+
   const getStatusColor = (canAccess: boolean) => {
     return canAccess ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
   };
 
   return (
     <div className="space-y-6 p-6">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900">Ejemplo de Protección de Rutas</h1>
-        <p className="text-gray-600 mt-2">
-          Sistema de protección basado en roles y permisos
-        </p>
+
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Expand className="h-8 w-8 text-primary" />
+          <div>
+            <h1 className="text-3xl font-bold">Ejemplo de Protección de Rutas</h1>
+            <p className="text-muted-foreground">
+              Sistema de protección basado en roles y permisos
+            </p>
+          </div>
+        </div>
+
       </div>
 
       {/* Información del usuario actual */}
@@ -58,12 +67,12 @@ const RouteProtectionExample = () => {
               <>
                 <p><strong>Nombre:</strong> {user.name}</p>
                 <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Rol:</strong> 
+                <p><strong>Rol:</strong>
                   <Badge variant="secondary" className="ml-2">
                     {user.role?.name || 'Sin rol'}
                   </Badge>
                 </p>
-                <p><strong>Permisos del rol:</strong> 
+                <div><strong>Permisos del rol:</strong>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {user.role?.permissions?.map(permission => (
                       <Badge key={permission} variant="outline" className="text-xs">
@@ -71,8 +80,8 @@ const RouteProtectionExample = () => {
                       </Badge>
                     )) || <span className="text-gray-500">Ninguno</span>}
                   </div>
-                </p>
-                <p><strong>Permisos personalizados:</strong> 
+                </div>
+                <div><strong>Permisos personalizados:</strong>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {user.permissions?.map(permission => (
                       <Badge key={permission} variant="outline" className="text-xs">
@@ -80,7 +89,7 @@ const RouteProtectionExample = () => {
                       </Badge>
                     )) || <span className="text-gray-500">Ninguno</span>}
                   </div>
-                </p>
+                </div>
               </>
             )}
           </div>
@@ -189,7 +198,7 @@ const RouteProtectionExample = () => {
                 {routeAccess.canAccessDashboard ? 'Sí' : 'No'}
               </Badge>
             </div>
-            
+
             <div className="text-center">
               <div className="flex justify-center mb-2">
                 {getStatusIcon(routeAccess.canAccessUsers)}
@@ -199,7 +208,7 @@ const RouteProtectionExample = () => {
                 {routeAccess.canAccessUsers ? 'Sí' : 'No'}
               </Badge>
             </div>
-            
+
             <div className="text-center">
               <div className="flex justify-center mb-2">
                 {getStatusIcon(routeAccess.canAccessRoles)}
@@ -209,7 +218,7 @@ const RouteProtectionExample = () => {
                 {routeAccess.canAccessRoles ? 'Sí' : 'No'}
               </Badge>
             </div>
-            
+
             <div className="text-center">
               <div className="flex justify-center mb-2">
                 {getStatusIcon(routeAccess.canAccessReports)}
@@ -224,21 +233,21 @@ const RouteProtectionExample = () => {
       </Card>
 
       {/* Botones de navegación */}
-      <div className="flex justify-center gap-4">
-        <Button 
+      <div className="flex justify-center gap-4 flex-col sm:flex-row ">
+        <Button
           onClick={() => window.location.href = '/c'}
           disabled={!routeAccess.canAccessDashboard}
         >
           Ir al Dashboard
         </Button>
-        <Button 
+        <Button
           onClick={() => window.location.href = '/users'}
           disabled={!routeAccess.canAccessUsers}
           variant="outline"
         >
           Ir a Usuarios
         </Button>
-        <Button 
+        <Button
           onClick={() => window.location.href = '/settings'}
           disabled={!routeAccess.canAccessSettings}
           variant="outline"

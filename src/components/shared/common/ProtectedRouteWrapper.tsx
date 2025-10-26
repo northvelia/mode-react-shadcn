@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { useRouteProtection } from '@/hooks/useRouteProtection';
 import Loading from '../Loading';
 import ErrorBoundary from './ErrorBoundary';
+import Unauthorized from './Unauthorized';
 
 interface ProtectedRouteWrapperProps {
   children: React.ReactNode;
@@ -25,7 +26,7 @@ const ProtectedRouteWrapper = ({
 
   // Si no puede acceder, no mostrar nada
   if (!canAccess) {
-    return null;
+    return <Unauthorized/>;
   }
 
   // Si puede acceder, mostrar con Suspense y ErrorBoundary

@@ -67,7 +67,6 @@ export const protectedRoutes = [
     description: 'Gestión de usuarios',
     icon: 'Users',
     showInSidebar: true,
-    roles: ['admin', 'manager'],
     permissions: ['user.view'],
     requireAllPermissions: false // Al menos uno de los permisos
   },
@@ -78,8 +77,7 @@ export const protectedRoutes = [
     description: 'Ejemplo de protección de rutas',
     icon: 'Shield',
     showInSidebar: true,
-    roles: ['admin', 'manager'],
-    permissions: ['dashboard.view']
+    permissions: ['dashboard.view'],
   },
   {
     path: '/roles',
@@ -88,7 +86,6 @@ export const protectedRoutes = [
     description: 'Administrar roles y permisos',
     icon: 'UserCog',
     showInSidebar: true,
-    roles: ['admin'],
     permissions: ['role.view']
   },
   {
@@ -98,7 +95,6 @@ export const protectedRoutes = [
     description: 'Reportes del sistema',
     icon: 'BarChart3',
     showInSidebar: true,
-    roles: ['admin', 'manager'],
     permissions: ['reports.view']
   },
   {
@@ -108,7 +104,7 @@ export const protectedRoutes = [
     description: 'Configuración del sistema',
     icon: 'Settings',
     showInSidebar: true,
-    roles: ['admin']
+    permissions: ['settings.view']
   },
   {
     path: '/docs',
@@ -117,7 +113,6 @@ export const protectedRoutes = [
     description: 'Documentación técnica',
     icon: 'FileText',
     showInSidebar: true,
-    roles: ['admin', 'manager'],
     permissions: ['docs.view']
   }
 ];
@@ -136,16 +131,4 @@ export const errorRoutes = [
   }
 ];
 
-// Función para obtener rutas por rol
-export const getRoutesByRole = (userRole: string = 'user') => {
-  return protectedRoutes.filter(route =>
-    !route.roles || route.roles.includes(userRole)
-  );
-};
 
-// Función para obtener rutas del sidebar
-export const getSidebarRoutes = (userRole: string = 'user') => {
-  return protectedRoutes.filter(route =>
-    route.showInSidebar && (!route.roles || route.roles.includes(userRole))
-  );
-};

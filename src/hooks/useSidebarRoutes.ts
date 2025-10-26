@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
 import { hasPermission, hasAnyPermission } from '@/utils/permissions';
-import { 
-  Home, 
-  Users, 
-  Shield, 
-  Settings, 
+import {
+  Home,
+  Users,
+  Shield,
+  Settings,
   BarChart3,
   UserCog,
   FileText
@@ -98,7 +98,7 @@ export const useSidebarRoutes = () => {
       // Verificar permisos
       if (route.requireAllPermissions) {
         // Requiere TODOS los permisos
-        return route.permissions.every(permission => 
+        return route.permissions.every(permission =>
           hasPermission(authState, permission)
         );
       } else {

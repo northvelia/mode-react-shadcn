@@ -52,10 +52,10 @@ const mockUsers = [
 // Página de gestión de usuarios
 function UsersPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const { canView, canCreate, canUpdate, canDelete } = useUserPermissions();
+  // const { canView, canCreate, canUpdate, canDelete } = useUserPermissions();
   
   // Usar las variables para evitar el warning de variables no utilizadas
-  console.log('User permissions:', { canView, canCreate, canUpdate, canDelete });
+  // console.log('User permissions:', { canView, canCreate, canUpdate, canDelete });
 
   const filteredUsers = mockUsers.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/sidebar";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSidebarRoutes } from '@/hooks/useSidebarRoutes';
+import dashSidebarRoutes from '@/config/dashSidebarRoutes';
 
 // Componente de barra lateral para Dashboard
 function DashboardSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const sidebarRoutes = useSidebarRoutes();
+  const sidebarRoutes = useSidebarRoutes(dashSidebarRoutes);
 
   return (
     <Sidebar>
@@ -27,13 +28,13 @@ function DashboardSidebar() {
             <SidebarMenu>
               {sidebarRoutes.map((route) => (
                 <SidebarMenuItem key={route.title}>
-                  <SidebarMenuButton 
+                  <SidebarMenuButton
                     asChild
-                    isActive={location.pathname === route.url}
+                    isActive={location.pathname === route.path}
                     title={route.description}
                   >
-                    <button 
-                      onClick={() => navigate(route.url)}
+                    <button
+                      onClick={() => navigate(route.path)}
                       className={cn('flex items-center gap-2 w-full')}
                     >
                       <route.icon className="h-5 w-5" />
